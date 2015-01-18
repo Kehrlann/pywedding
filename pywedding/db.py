@@ -3,12 +3,10 @@ from pywedding import app
 from gdata.spreadsheet.text_db import DatabaseClient
 from datetime import datetime
 
-print "connect"
 client          =   DatabaseClient(username=app.config['GOOGLE_USERNAME'], password=app.config['GOOGLE_PASSWORD'])
 db              =   client.GetDatabases(name=app.config['SPREADSHEET_NAME'])[0]
 wishlist        =   db.GetTables(name="wishlist")[0]
 accommodation   =   db.GetTables(name="accommodation")[0]
-print "connected"
 
 
 class Item:
