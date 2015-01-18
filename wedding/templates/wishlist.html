@@ -1,0 +1,78 @@
+{% extends "_main.html" %}
+{% set active_page = 'wishlist' %}
+{% block title %}Liste de mariage{% endblock %}
+
+{% block scripts %}
+<script>
+    var clickModal = function(id, name) {   $('#modal-title').text(name);
+                                            $('#id').val(id);
+                                            $('#myModal').modal();
+                                        }
+</script>
+{% endblock %}
+
+
+{% block content %}
+    {{ text|safe }}
+    <br>
+    <br>
+    {% for item in items %}
+        <div class="row">
+            {% if item.photo != None %}
+            <div class="col-sm-4 text-center sm-margin">
+                <img src="{{ item.photo }}" title="{{ item.title }}" width="180px">
+            </div>
+            {% else %}
+            <div class="col-sm-4 text-center sm-margin">
+                <img src="{{ url_for('static', filename='img/no_img.png') }}" title="Pas d'image..." width="180px">
+            </div>
+            {% endif %}
+            <div class="col-sm-8">
+                <p class="lead bold shadowed">
+                    {{ item.title }}
+                    {% if item.link != None %}
+                    <a href="{{ item.link }}" target="_blank" style="font-style: italic; font-weight: normal;">(ref)</a>
+                    {% endif %}
+                </p>
+
+                <p class="lead">
+                    {{ item.description }}
+                </p>
+
+                {% if item.reserved %}
+                <p class="lead" style="margin-top:10px;">
+                    <button href="#" class="btn btn-sm btn-default" disabled>Déjà réservé</button>
+                </p>
+                {% else %}
+                <p class="lead" style="margin-top:10px;">
+                    <button href="#" class="btn btn-sm btn-default" onclick="clickModal('{{ item.id }}', '{{ item.title }}')">Réserver</button>
+                </p>
+                {% endif %}
+
+            </div>
+        </div>
+        <hr />
+    {% endfor %}
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <form class="modal-content" action="{{ url_for('gift') }}" method="POST">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Réserver <span id="modal-title"></span></h4>
+      </div>
+      <div class="modal-body">
+        <p>Mon adresse mail :</p>
+          <input type="email" class="form-control" name="mail" id="mail" placeholder="machin@truc.com" required />
+          <input type="hidden" name="id" id="id"/>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+        <button type="submit" class="btn btn-primary">Réserver </button>
+      </div>
+    </form><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+{% endblock %}

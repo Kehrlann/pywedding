@@ -1,0 +1,44 @@
+{% extends "_main.html" %}
+{% set active_page = 'accommodation' %}
+{% block title %}Informations{% endblock %}
+
+{% block content %}
+    {{ text|safe }}
+    <br>
+    <br>
+    {% for item in items %}
+        <div class="row">
+            <div class="col-sm-12">
+                <p class="lead bold shadowed">
+                    {{ item.name }} ({{ item.type }})
+                </p>
+
+                {% if item.address != None %}
+                <p class="lead">
+                    <a href="http://maps.google.com/?q={{ item.address }}" target="_blank" style="font-style: italic; font-weight: normal;"><i class="glyphicon glyphicon-map-marker" style="margin-right:15px;"></i>{{ item.address }}</a>
+                </p>
+                {% endif %}
+
+                {% if item.site != None %}
+                <p class="lead">
+                    <a href="{{ item.site }}" target="_blank" style="font-style: italic; font-weight: normal;"><i class="glyphicon glyphicon-globe"  style="margin-right:15px;"></i>{{ item.site }}</a>
+                </p>
+                {% endif %}
+
+                {% if item.email != None %}
+                <p class="lead">
+                    <a href="mailto:{{ item.email }}" target="_blank" style="font-style: italic; font-weight: normal;"><i class="glyphicon glyphicon-envelope" style="margin-right:15px;"></i>{{ item.email }}</a>
+                </p>
+                {% endif %}
+
+                {% if item.phone %}
+                <p class="lead">
+                    <i class="glyphicon glyphicon-phone-alt" style="margin-right:15px;"></i>{{ item.phone }}
+                </p>
+                {% endif %}
+
+            </div>
+        </div>
+        <hr />
+    {% endfor %}
+{% endblock %}
