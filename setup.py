@@ -5,7 +5,7 @@ from setuptools import setup
 setup(
     name="pywedding",
     description='Minimalist wedding website with gift list and two static pages',
-    py_modules=['wedding'],
+    py_modules=['pywedding'],
     version='0.1',
     long_description=__doc__,
     zip_safe=False,

@@ -1,5 +1,5 @@
 #coding=utf-8
-from wedding import app
+from pywedding import app
 from gdata.spreadsheet.text_db import DatabaseClient
 from datetime import datetime
 

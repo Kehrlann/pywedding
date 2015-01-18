@@ -1,7 +1,7 @@
 #coding=utf-8
 
 from flask import render_template, request, redirect, url_for
-from wedding import app
+from pywedding import app
 import db
 
 
