@@ -1,11 +1,12 @@
 __author__ = 'daniel@garnier.wf'
 
-from setuptools import setup
+from setuptools import setup, find_packages
 
 setup(
     name="pywedding",
     description='Minimalist wedding website with gift list and two static pages',
-    py_modules=['pywedding'],
+    packages=find_packages(),
+    include_package_data=True,
     version='0.1',
     long_description=__doc__,
     zip_safe=False,
