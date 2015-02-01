@@ -12,7 +12,6 @@ setup(
     zip_safe=False,
     author_email='daniel@garnier.wf',
     install_requires=   [   'Flask',
-                            'sqlalchemy',
                             'gdata'
                         ],
     license='MIT License',
