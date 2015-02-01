@@ -44,5 +44,9 @@ app.jinja_env.globals['info']               =   app.config['INFO_LINK']
 app.jinja_env.globals['wishlist']           =   app.config['WISHLIST_LINK']
 app.jinja_env.globals['accommodation']      =   app.config['ACCOMMODATION_LINK']
 app.jinja_env.globals['honeymoon']          =   app.config['HONEYMOON_LINK']
+app.jinja_env.globals['details']            =   app.config['DETAILS']
+app.jinja_env.globals['give']               =   app.config['GIVE']
+app.jinja_env.globals['already_given']      =   app.config['ALREADY_GIVEN']
+
 
 import views

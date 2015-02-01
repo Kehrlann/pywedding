@@ -225,3 +225,8 @@ footer a {
 .modal {
     color:black;
 }
+
+.capt {
+    font-size:16px;
+    background-color:rgba(0,0,0,0.7);
+}

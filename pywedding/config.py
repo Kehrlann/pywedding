@@ -3,6 +3,9 @@ GOOGLE_USERNAME     =   None                        #   ex : "john.doe@gmail.com
 GOOGLE_PASSWORD     =   None                        #   ex : "p4$$w0rd"
 SPREADSHEET_NAME	=	'pywedding'                 #   name of the spreadsheet
 SITE_NAME           =   u'My wedding website'       #   Title of the website !
+GIVE				=	u'Give'                     #   Label for the button on the wishlit
+ALREADY_GIVEN		=	u'Alreay given'             #   Label for items already given on the wishlit
+DETAILS				=	u'details'                  #   Label for the link on the wishlist
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 INFO_LINK           =   u"Informations"             # the display name the info page

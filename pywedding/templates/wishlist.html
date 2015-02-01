@@ -31,7 +31,7 @@
                 <p class="lead bold shadowed">
                     {{ item.title }}
                     {% if item.link != None %}
-                    <a href="{{ item.link }}" target="_blank" style="font-style: italic; font-weight: normal;">(ref)</a>
+                    (<a href="{{ item.link }}" target="_blank" style="font-style: italic; font-weight: normal;"><i class="glyphicon glyphicon-new-window" style="font-size:14px;"></i> {{ details }}</a>)
                     {% endif %}
                 </p>
 
@@ -41,11 +41,11 @@
 
                 {% if item.reserved %}
                 <p class="lead" style="margin-top:10px;">
-                    <button href="#" class="btn btn-sm btn-default" disabled>Déjà réservé</button>
+                    <button href="#" class="btn btn-sm btn-default" disabled>{{ already_given }}</button>
                 </p>
                 {% else %}
                 <p class="lead" style="margin-top:10px;">
-                    <button href="#" class="btn btn-sm btn-default" onclick="clickModal('{{ item.id }}', '{{ item.title }}')">Réserver</button>
+                    <button href="#" class="btn btn-sm btn-default" onclick="clickModal('{{ item.id }}', '{{ item.title }}')">{{ give }}</button>
                 </p>
                 {% endif %}
 
@@ -59,16 +59,16 @@
     <form class="modal-content" action="{{ url_for('gift') }}" method="POST">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">Réserver <span id="modal-title"></span></h4>
+        <h4 class="modal-title">{{ give }} : <span id="modal-title"></span></h4>
       </div>
       <div class="modal-body">
-        <p>Mon adresse mail :</p>
-          <input type="email" class="form-control" name="mail" id="mail" placeholder="machin@truc.com" required />
+        <p>E-mail :</p>
+          <input type="email" class="form-control" name="mail" id="mail" placeholder="somebody@something.com" required />
           <input type="hidden" name="id" id="id"/>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
-        <button type="submit" class="btn btn-primary">Réserver </button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="glyphicon glyphicon-ban-circle"></i></button>
+        <button type="submit" class="btn btn-primary">{{ give }} </button>
       </div>
     </form><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
