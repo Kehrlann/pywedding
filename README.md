@@ -25,5 +25,5 @@ All the dependencies should be installed.
   * If you do so, the config.py can be copied anywhere on your filesystem. Just add an environment 
 variable `PYWEDDING_CONFIG` pointing to it.
   * Should you decide to publish the site using uwsgi + nginx, you will find config samples in the `config-samples`
-directory.
+directory. Your can then run `uwsgi --ini /PATH/TO/YOUR/uwsgi.ini`.
   * Everything under pywedding/static can be served statically via your webserver.
