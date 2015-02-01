@@ -8,7 +8,7 @@ ALREADY_GIVEN		=	u'Alreay given'             #   Label for items already given o
 DETAILS				=	u'details'                  #   Label for the link on the wishlist
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-INFO_LINK           =   u"Informations"             # the display name the info page
+INFO_LINK           =   u"Info"             # the display name the info page
 INFO_PAGE           =   u"""
     <h1 class="cover-heading">Informations</h1>
 
