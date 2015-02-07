@@ -8,7 +8,7 @@ the MIT license.
 Check the live version [here](http://pywedding.garnier.wf).
 
 ## Usage
-  * First, install the "database" by copying the appropriate [spreadsheet template](). It is higly recommended 
+  * First, install the "database" by copying the appropriate [spreadsheet template](https://drive.google.com/previewtemplate?id=1YYrHsejzTj1sbwCx5hIKupQkVMisa-Cu3iuk4f-apU8&mode=public). It is higly recommended 
 that you create a new google account, such as 'pyweddingcalvinsuzie@gmail.com', share your spreadsheet with
 this new account.
   * Edit the config.py file, and put in the login + password of said account.
