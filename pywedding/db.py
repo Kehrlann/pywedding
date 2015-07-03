@@ -50,7 +50,6 @@ class Accommodation:
     - phone         :   (optional) contact phone
     """
     def __init__(self, record):
-        print record.content
         self.record     =   record
         self.id         =   record.row_id
         self.name       =   record.content['name']
