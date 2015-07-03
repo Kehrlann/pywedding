@@ -8,10 +8,10 @@ the MIT license.
 Check the live version [here](http://pywedding.garnier.wf).
 
 ## Usage
-  * First, install the "database" by copying the appropriate [spreadsheet template](https://drive.google.com/previewtemplate?id=1YYrHsejzTj1sbwCx5hIKupQkVMisa-Cu3iuk4f-apU8&mode=public). It is higly recommended 
-that you create a new google account, such as 'pyweddingcalvinsuzie@gmail.com', share your spreadsheet with
-this new account.
-  * Edit the config.py file, and put in the login + password of said account.
+  * First, install the "database" by copying the appropriate [spreadsheet template](https://drive.google.com/previewtemplate?id=1YYrHsejzTj1sbwCx5hIKupQkVMisa-Cu3iuk4f-apU8&mode=public).
+  * Publish that spreadsheet to the web (File > Publish to the web).
+  * Get the key (which is in the url, right after the /d/, and looks like like `1YYrHsejzTj1sbwCx5hIKupQkVMisa-Cu3iuk4f-apU8`.
+  * Edit the config.py file, and put the key.
   * Modify all the appropriate values in config.py to replace the default texts with you own content.
   * Install the dependencies with pip : `$ pip install Flask gdata`.
   * Run runserver.py, your site should be available on http://localhost:2706.

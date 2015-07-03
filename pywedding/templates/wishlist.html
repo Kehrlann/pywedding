@@ -39,6 +39,7 @@
                     {{ item.description }}
                 </p>
 
+                {#
                 {% if item.reserved %}
                 <p class="lead" style="margin-top:10px;">
                     <button href="#" class="btn btn-sm btn-default" disabled>{{ already_given }}</button>
@@ -48,6 +49,7 @@
                     <button href="#" class="btn btn-sm btn-default" onclick="clickModal('{{ item.id }}', '{{ item.title }}')">{{ give }}</button>
                 </p>
                 {% endif %}
+                #}
 
             </div>
         </div>

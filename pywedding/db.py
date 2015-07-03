@@ -1,12 +1,18 @@
 #coding=utf-8
 from pywedding import app
-from gdata.spreadsheet.text_db import DatabaseClient
+from gdata.spreadsheet.service import SpreadsheetsService, ListQuery
+from gdata.spreadsheet.text_db import Record
 from datetime import datetime
 
-client          =   DatabaseClient(username=app.config['GOOGLE_USERNAME'], password=app.config['GOOGLE_PASSWORD'])
-db              =   client.GetDatabases(name=app.config['SPREADSHEET_NAME'])[0]
-wishlist        =   db.GetTables(name="wishlist")[0]
-accommodation   =   db.GetTables(name="accommodation")[0]
+client  = SpreadsheetsService()
+feed    = client.GetWorksheetsFeed(visibility='public', projection='basic', key=app.config['SPREADSHEET_KEY'])
+sheet   = None
+for s in feed.entry:
+  if s.title.text == 'wishlist':
+      wishlist = s
+  elif s.title.text == 'accommodation':
+      accommodation = s
+
 
 
 class Item:
@@ -44,6 +50,7 @@ class Accommodation:
     - phone         :   (optional) contact phone
     """
     def __init__(self, record):
+        print record.content
         self.record     =   record
         self.id         =   record.row_id
         self.name       =   record.content['name']
@@ -58,7 +65,21 @@ def load_wishlist():
     """
     Load all items in the wishlist (300 max). google requires a limit...
     """
-    records = wishlist.GetRecords(1,300)
+    #records = wishlist.GetRecords(1,300)
+
+    row_query = ListQuery()
+    row_query.start_index = str(1)
+    rows_feed = client.GetListFeed(key=app.config['SPREADSHEET_KEY'], visibility='public', projection='full', wksht_id=wishlist.id.text.split('/')[-1])
+
+    records = []
+
+    for row in rows_feed.entry:
+        records.append  (   Record  (   spreadsheet_key=app.config['SPREADSHEET_KEY'],
+                                        worksheet_id=wishlist.id.text.split('/')[-1],
+                                        row_entry=row,
+                                    )
+                        )
+
     return [Item(r) for r in records]
 
 
@@ -67,8 +88,21 @@ def load_accommodation():
     """
     Load all items in the list of accommodation (300 max). google requires a limit...
     """
-    records = accommodation.GetRecords(1,300)
+    row_query = ListQuery()
+    row_query.start_index = str(1)
+    rows_feed = client.GetListFeed(key=app.config['SPREADSHEET_KEY'], visibility='public', projection='full', wksht_id=accommodation.id.text.split('/')[-1])
+
+    records = []
+
+    for row in rows_feed.entry:
+        records.append  (   Record  (   spreadsheet_key=app.config['SPREADSHEET_KEY'],
+                                        worksheet_id=accommodation.id.text.split('/')[-1],
+                                        row_entry=row
+                                    )
+                        )
+
     return [Accommodation(r) for r in records]
+
 
 
 
@@ -76,12 +110,15 @@ def update_wishlist_by_id(id, mail):
     """
     Update an item of the wishlist, setting an e-mail.
     """
-    r = wishlist.GetRecord(row_id=id)
+    row = client.GetListFeed(key=app.config['SPREADSHEET_KEY'], visibility='public', projection='full', wksht_id=wishlist.id.text.split('/')[-1], row_id=id)
+    r = Record(content=None, row_entry=row,
+           spreadsheet_key=app.config['SPREADSHEET_KEY'],
+           worksheet_id=wishlist.id.text.split('/')[-1], database_client=client)
 
     if r is not None:
         r.content['mail'] = mail
         r.content['date'] = datetime.now().strftime('%Y/%m/%d %H:%M')
-        r.Push()
+        client.UpdateRow(row, r.content)
         return True
 
     return False
